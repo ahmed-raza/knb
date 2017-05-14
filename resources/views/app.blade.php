@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{!! config('vars.site_name') !!}</title>
+  <title>{!! config('vars.site_name') !!} | {!! config('vars.slogan') !!}</title>
 </head>
 <body>
   <h1>Welcome to {!! config('vars.site_name') !!}</h1>

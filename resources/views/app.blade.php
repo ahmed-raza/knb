@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{!! config('vars.site_name') !!} | {!! config('vars.slogan') !!}</title>
 </head>
 <body>

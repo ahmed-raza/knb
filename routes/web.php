@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
+Route::get('/', ['as'=>'home', 'uses'=>'PagesController@index']);

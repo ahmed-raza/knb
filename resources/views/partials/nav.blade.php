@@ -8,33 +8,31 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">Laravel 5.1</a>
+    <a class="navbar-brand" href="/">{!! config('app.name') !!}</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
       <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="/about">About</a></li>
-      @if(!Auth::user())
-      @endif
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      @if(Auth::user())
+      @if(Auth::check())
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ route('user.show', Auth::id()) }}">Profile</a></li>
+            <li><a href="{{ route('user.profile') }}">Profile</a></li>
             @if(Auth::user()->rank == 'admin')
             <li role="separator" class="divider"></li>
-            <li><a href="{{ route('admin') }}">Admin</a></li>
+            <li><a href="#">Admin</a></li>
             @endif
             <li role="separator" class="divider"></li>
-            <li><a href="{{ Auth::logout() }}">Logout</a></li>
+            <li><a href="{{ route('user.logout') }}">Logout</a></li>
           </ul>
         </li>
       @else
-        <li class="{{ Request::is('auth/login') ? 'active' : '' }}"><a href="/auth/login">Login</a></li>
-        <li class="{{ Request::is('auth/register') ? 'active' : '' }}"><a href="/auth/register">Register</a></li>
+        <li class="{{ Request::is('login') ? 'active' : '' }}"><a href="/login">Login</a></li>
+        <li class="{{ Request::is('register') ? 'active' : '' }}"><a href="/register">Register</a></li>
       @endif
     </ul>
   </div><!-- /.navbar-collapse -->

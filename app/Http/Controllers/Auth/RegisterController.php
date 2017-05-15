@@ -62,11 +62,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user_rank = 'user';
         if (User::count() == 0) {
           $user_rank = 'admin';
-        }
-        else{
-            $user_rank = 'user';
         }
         return User::create([
             'name' => $data['name'],

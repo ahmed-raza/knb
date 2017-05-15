@@ -18,10 +18,8 @@ class Profile
      */
     public function handle($request, Closure $next)
     {
-        $id = explode("/", Request::url())[4];
-        $user = User::findorfail($id);
         if (Auth::check()) {
-            if (Auth::user()->email == $user->email) {
+            if (Auth::user()->email == $request->user()->email) {
                 return $next($request);
             }
         }

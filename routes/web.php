@@ -15,7 +15,6 @@ Route::get('/', ['as'=>'home', 'uses'=>'PagesController@index']);
 
 Route::group(['prefix'=>'user'], function(){
   Route::get('{id}', ['as'=>'user.show', 'uses'=>'UsersController@show']);
-  Route::get('profile', ['as'=>'user.profile', 'uses'=>'UsersController@profile']);
   Route::get('logout', ['as'=>'user.logout', 'uses'=>'UsersController@logout']);
 });
 

@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{!! config('vars.site_name') !!} | @yield('title')</title>
+  <title>{!! config('app.name') !!} | @yield('title')</title>
   {!! HTML::style('css/all.css') !!}
   {!! HTML::script('js/all.js') !!}
 </head>
 <body>
+  @include('partials.nav')
   <div class="container">
     <div class="row">
     @if(array_key_exists('sidebar', View::getSections()))

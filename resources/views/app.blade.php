@@ -8,6 +8,15 @@
   {!! HTML::script('js/all.js') !!}
 </head>
 <body>
-  @yield('content')
+  <div class="container">
+    <div class="row">
+    @if(array_key_exists('sidebar', View::getSections()))
+      <div class="col-lg-8">@yield('content')</div>
+      <div class="col-lg-4">@yield('sidebar')</div>
+      @else
+      <div class="col-lg-12">@yield('content')</div>
+    @endif
+    </div>
+  </div>
 </body>
 </html>

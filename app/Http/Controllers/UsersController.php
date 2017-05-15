@@ -9,7 +9,11 @@ use App\User;
 class UsersController extends Controller
 {
   public function __construct(){
-    $this->middleware('profile');
+    $this->middleware('profile')->except('show');
+  }
+  public function profile(){
+    $user = Auth::user();
+    return view('users.index', compact('user'));
   }
   public function show($id){
     $user = User::findorfail($id);

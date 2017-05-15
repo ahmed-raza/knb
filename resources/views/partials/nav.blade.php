@@ -21,7 +21,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ route('user.show', Auth::user()->id) }}">Profile</a></li>
+            <li><a href="{{ route('user.profile') }}">Profile</a></li>
             @if(Auth::user()->rank == 'admin')
             <li><a href="#">Admin</a></li>
             @endif

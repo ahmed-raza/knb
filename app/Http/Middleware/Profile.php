@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use Request;
+use App\User;
 
 class Profile
 {
@@ -16,9 +18,13 @@ class Profile
      */
     public function handle($request, Closure $next)
     {
+        $id = explode("/", Request::url())[4];
+        $user = User::findorfail($id);
         if (Auth::check()) {
-            return $next($request);
+            if (Auth::user()->email == $user->email) {
+                return $next($request);
+            }
         }
-        return redirect('/login');
+        return abort(403);
     }
 }

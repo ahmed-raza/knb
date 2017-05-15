@@ -13,8 +13,8 @@
 
 Route::get('/', ['as'=>'home', 'uses'=>'PagesController@index']);
 
-Route::group(['prefix'=>'user'], function(){
-  Route::get('{id}', ['as'=>'user.show', 'uses'=>'UsersController@show']);
+Route::group(['prefix'=>'user/{id}'], function(){
+  Route::get('/', ['as'=>'user.show', 'uses'=>'UsersController@show']);
   Route::get('logout', ['as'=>'user.logout', 'uses'=>'UsersController@logout']);
 });
 

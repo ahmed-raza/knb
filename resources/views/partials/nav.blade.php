@@ -26,7 +26,7 @@
             <li><a href="#">Admin</a></li>
             @endif
             <li role="separator" class="divider"></li>
-            <li><a href="{{ route('user.logout') }}">Logout</a></li>
+            <li><a href="{{ route('user.logout', Auth::user()->id) }}">Logout</a></li>
           </ul>
         </li>
       @else

@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', ['as'=>'home', 'uses'=>'PagesController@index']);
 Route::get('user/profile', ['as'=>'user.profile', 'uses'=>'UsersController@profile']);
 
@@ -19,4 +21,4 @@ Route::group(['prefix'=>'user/{id}'], function(){
   Route::get('logout', ['as'=>'user.logout', 'uses'=>'UsersController@logout']);
 });
 
-Auth::routes();
+Route::resource('ads', 'AdsController');

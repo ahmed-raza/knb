@@ -23,7 +23,8 @@ class AdsController extends Controller
      */
     public function create()
     {
-      return view('ads.create');
+        $years = $this->years();
+        return view('ads.create', compact('years'));
     }
 
     /**
@@ -80,5 +81,13 @@ class AdsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function years(){
+        $year=[];
+        for ($i=date('Y'); $i > '1940' ; $i--) { 
+            $year[$i] = $i;
+        }
+        return ['_none'=>'-Select-'] + $year;
     }
 }

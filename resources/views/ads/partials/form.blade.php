@@ -10,7 +10,7 @@
     </div>
     <div class="col-lg-4">
       {!! Form::label('Model Year') !!}
-      {!! Form::select('model_year', ['2017'], null, ['class'=>'form-control']) !!}
+      {!! Form::select('model_year', $years, null, ['class'=>'form-control']) !!}
     </div>
   </div>
 </div>
@@ -69,6 +69,21 @@
       <div class="col-lg-12">
         {!! Form::label('Images') !!}
         {!! Form::file('images') !!}
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div class="form-group">
+  <fieldset>
+    <legend>Contact Information</legend>
+    <div class="row">
+      <div class="col-lg-6">
+        {!! Form::label('Seller Name') !!}
+        {!! Form::text('seller_name', null, ['class'=>'form-control']) !!}
+      </div>
+      <div class="col-lg-6">
+        {!! Form::label('Mobile Number') !!}
+        {!! Form::text('mobile_number', null, ['class'=>'form-control']) !!}
       </div>
     </div>
   </fieldset>

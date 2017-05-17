@@ -18,5 +18,6 @@ elixir(function(mix) {
     mix.scripts([
       'jquery-1.11.1.js',
       'bootstrap.js',
+      'select2.min.js',
       ]);
 });

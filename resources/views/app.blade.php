@@ -6,6 +6,7 @@
   <title>{!! config('app.name') !!} | @yield('title')</title>
   {!! HTML::style('css/all.css') !!}
   {!! HTML::script('js/all.js') !!}
+  {!! HTML::script('ckeditor/ckeditor.js') !!}
 </head>
 <body>
   @include('partials.nav')

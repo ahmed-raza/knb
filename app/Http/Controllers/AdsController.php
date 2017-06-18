@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\AdsRequest;
+use App\User;
+use App\Ad;
+use Auth;
 
 class AdsController extends Controller
 {
@@ -33,9 +37,10 @@ class AdsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdsRequest $request)
     {
-        //
+        $ads = Auth::user()->ads()->create($request->all());
+        return redirect('ads')->with('message', 'Ad created.');
     }
 
     /**
@@ -88,6 +93,6 @@ class AdsController extends Controller
         for ($i=date('Y'); $i > '1940' ; $i--) { 
             $year[$i] = $i;
         }
-        return ['_none'=>'-Select-'] + $year;
+        return [''=>'-Select-'] + $year;
     }
 }

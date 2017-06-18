@@ -10,7 +10,7 @@
     </div>
     <div class="col-lg-4">
       {!! Form::label('Model Year') !!}
-      {!! Form::select('model_year', $years, null, ['class'=>'form-control']) !!}
+      {!! Form::select('year', $years, null, ['class'=>'form-control']) !!}
     </div>
   </div>
 </div>
@@ -18,15 +18,15 @@
   <div class="row">
     <div class="col-lg-4">
       {!! Form::label('Manufacturer') !!}
-      {!! Form::select('car_make', [], null, ['class'=>'form-control']) !!}
+      {!! Form::select('car_make', ['toyo'=>'Toyo'], null, ['class'=>'form-control']) !!}
     </div>
     <div class="col-lg-4">
       {!! Form::label('Model') !!}
-      {!! Form::select('car_model', [], null, ['class'=>'form-control']) !!}
+      {!! Form::select('car_model', ['civic'=>'Civic'], null, ['class'=>'form-control']) !!}
     </div>
     <div class="col-lg-4">
       {!! Form::label('Version') !!}
-      {!! Form::select('car_version', [], null, ['class'=>'form-control']) !!}
+      {!! Form::select('car_version', ['2015'=>'2015'], null, ['class'=>'form-control']) !!}
     </div>
   </div>
 </div>
@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col-lg-4">
       {!! Form::label('Registration City') !!}
-      {!! Form::select('registration_city', [], null, ['class'=>'form-control']) !!}
+      {!! Form::select('registration_city', ['lhr'=>'Lahore'], null, ['class'=>'form-control']) !!}
     </div>
     <div class="col-lg-4">
       {!! Form::label('Mileage') !!}
@@ -42,7 +42,7 @@
     </div>
     <div class="col-lg-4">
       {!! Form::label('Color') !!}
-      {!! Form::select('exterior_color', [], null, ['class'=>'form-control']) !!}
+      {!! Form::select('exterior_color', ['red'=>'Red'], null, ['class'=>'form-control']) !!}
     </div>
   </div>
 </div>
@@ -88,8 +88,10 @@
     </div>
   </fieldset>
 </div>
-<div class="row">
-  <div class="col-lg-12">
-    {!! Form::submit($submitButtonText, ['class'=>'btn btn-primary btn-block']) !!}
-  </div>
+<div class="form-group">
+  <div class="row">
+    <div class="col-lg-12">
+      {!! Form::submit($submitButtonText, ['class'=>'btn btn-primary btn-block']) !!}
+    </div>
+</div>
 </div>

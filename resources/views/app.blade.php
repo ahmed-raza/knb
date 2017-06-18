@@ -11,6 +11,7 @@
 <body>
   @include('partials.nav')
   <div class="container">
+    @include('errors.messages')
     <div class="row">
     @if(array_key_exists('sidebar', View::getSections()))
       <div class="col-lg-8">@yield('content')</div>

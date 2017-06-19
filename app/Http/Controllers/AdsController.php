@@ -17,7 +17,8 @@ class AdsController extends Controller
      */
     public function index()
     {
-        //
+        $ads = Ad::all();
+        return view('ads.index', compact('ads'));
     }
 
     /**

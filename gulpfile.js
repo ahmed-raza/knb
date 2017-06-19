@@ -13,7 +13,8 @@ var elixir = require('laravel-elixir');
 elixir.config.production = false;
 elixir(function(mix) {
     mix.styles([
-      'bootstrap.min.css',
+      'bootstrap.css',
+      'style.css',
       ]);
     mix.scripts([
       'jquery-1.11.1.js',

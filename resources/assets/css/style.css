@@ -6,3 +6,11 @@
     float:right;
     margin-top:15px;
 }
+
+.banner-description {
+  position: absolute;
+  z-index: 999;
+  left: 80px;
+  top: 50px;
+  color: white;
+}

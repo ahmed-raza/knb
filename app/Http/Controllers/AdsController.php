@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AdsRequest;
 use App\User;
 use App\Ad;
+use App\Image;
+use Storage;
+use File;
 use Auth;
 
 class AdsController extends Controller
@@ -44,6 +47,20 @@ class AdsController extends Controller
     {
         $request->merge(['car_year' => strtotime($request->input('car_year'))]);
         $ads = Auth::user()->ads()->create($request->all());
+        if (!empty($request->file('images'))) {
+            $image_ids = [];
+            foreach ($request->file('images') as $key => $image) {
+                $imageName = time() ."_($key)_". $image->getClientOriginalName();
+                $imagePath = 'articles/'.$imageName;
+                $upload = Storage::put($imagePath, File::get($image));
+                $new_image = new Image;
+                $new_image->imageName = $imageName;
+                $new_image->imagePath = $imagePath;
+                $new_image->save();
+                array_push($image_ids, $new_image->id);
+            }
+        }
+        $ads->images()->attach($image_ids);
         return redirect('ads')->with('message', 'Ad created.');
     }
 

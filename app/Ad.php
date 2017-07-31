@@ -8,18 +8,14 @@ class Ad extends Model
 {
   protected $fillable = [
     'title',
-    'city',
-    'year',
     'car_make',
     'car_model',
-    'car_version',
-    'registration_city',
-    'mileage',
-    'exterior_color',
+    'car_year',
+    'car_mileage',
+    'car_color',
+    'car_type',
+    'car_price',
     'description',
-    'price',
-    'seller_name',
-    'mobile_number'
   ];
 
   public function user(){

@@ -28,9 +28,10 @@ class AdsController extends Controller
      */
     public function create()
     {
-        $years = $this->years();
+        $types = $this->types();
+        $makers = $this->makers();
         $models = $this->models();
-        return view('ads.create', compact('years', 'models'));
+        return view('ads.create', compact('types', 'makers', 'models'));
     }
 
     /**
@@ -41,6 +42,7 @@ class AdsController extends Controller
      */
     public function store(AdsRequest $request)
     {
+        $request->merge(['car_year' => strtotime($request->input('car_year'))]);
         $ads = Auth::user()->ads()->create($request->all());
         return redirect('ads')->with('message', 'Ad created.');
     }
@@ -90,33 +92,45 @@ class AdsController extends Controller
         //
     }
 
-    private function years(){
-        $year=[];
-        for ($i=date('Y'); $i > '1940' ; $i--) { 
-            $year[$i] = $i;
-        }
-        return [''=>'-Select-'] + $year;
+    private function types(){
+        return [
+            'SUV'           => 'SUV',
+            'Sedan'         => 'Sedan',
+            'Minivan'       => 'Minivan',
+            'Hatchback'     => 'Hatchback',
+            'Convertible'   => 'Convertible',
+        ];
+    }
+
+    private function makers(){
+        return [
+            'Honda'     => 'Honda',
+            'Suzuki'    => 'Suzuki',
+            'Nissan'    => 'Nissan',
+            'Toyota'    => 'Toyota',
+            'Daihatsu'  => 'Daihatsu',
+        ];
     }
 
     private function models(){
         return [
-            'Accord',
-            'Baleno',
-            'Bolan',
-            'Charade',
-            'City',
-            'Civic',
-            'Corolla GLi',
-            'Corolla XLi',
-            'Corona',
-            'FX',
-            'Hilux',
-            'Khayber',
-            'Lancer',
-            'Mehran',
-            'N-One',
-            'N-Wagon',
-            'Prado',
+            'Accord'        => 'Accord',
+            'Baleno'        => 'Baleno',
+            'Bolan'         => 'Bolan',
+            'Charade'       => 'Charade',
+            'City'          => 'City',
+            'Civic'         => 'Civic',
+            'Corolla GLi'   => 'Corolla GLi',
+            'Corolla XLi'   => 'Corolla XLi',
+            'Corona'        => 'Corona',
+            'FX'            => 'FX',
+            'Hilux'         => 'Hilux',
+            'Khayber'       => 'Khayber',
+            'Lancer'        => 'Lancer',
+            'Mehran'        => 'Mehran',
+            'N-One'         => 'N-One',
+            'N-Wagon'       => 'N-Wagon',
+            'Prado'         => 'Prado',
         ];
     }
 }

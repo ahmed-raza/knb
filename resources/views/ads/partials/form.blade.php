@@ -60,7 +60,7 @@
     <div class="row">
       <div class="col-lg-12">
         {!! Form::label('Images') !!}
-        {!! Form::file('images') !!}
+        {!! Form::file('images[]', ['multiple'=>true]) !!}
       </div>
     </div>
   </fieldset>

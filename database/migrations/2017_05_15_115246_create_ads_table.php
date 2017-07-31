@@ -17,13 +17,13 @@ class CreateAdsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('title');
-            $table->string('year');
+            $table->string('car_year');
             $table->string('car_make');
             $table->string('car_model');
             $table->string('car_type');
-            $table->string('mileage');
+            $table->string('car_mileage');
             $table->string('car_color');
-            $table->string('price');
+            $table->string('car_price');
             $table->text('description');
             $table->rememberToken();
             $table->timestamps();

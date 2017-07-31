@@ -28,9 +28,9 @@ class AdsRequest extends FormRequest
             'car_make'=>'required',
             'car_model'=>'required',
             'car_year'=>'required',
-            'mileage'=>'required',
+            'car_mileage'=>'required',
             'car_color'=>'required',
-            'price'=>'required',
+            'car_price'=>'required',
             'description'=>'required',
         ];
     }

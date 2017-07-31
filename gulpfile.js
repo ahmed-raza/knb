@@ -14,10 +14,12 @@ elixir.config.production = false;
 elixir(function(mix) {
     mix.styles([
       'bootstrap.css',
+      '../flexslider/flexslider.css',
       'style.css',
       ]);
     mix.scripts([
       'jquery-1.11.1.js',
+      '../flexslider/jquery.flexslider.js',
       'bootstrap.js',
       'select2.min.js',
       ]);

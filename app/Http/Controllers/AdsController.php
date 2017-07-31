@@ -29,7 +29,8 @@ class AdsController extends Controller
     public function create()
     {
         $years = $this->years();
-        return view('ads.create', compact('years'));
+        $models = $this->models();
+        return view('ads.create', compact('years', 'models'));
     }
 
     /**
@@ -95,5 +96,27 @@ class AdsController extends Controller
             $year[$i] = $i;
         }
         return [''=>'-Select-'] + $year;
+    }
+
+    private function models(){
+        return [
+            'Accord',
+            'Baleno',
+            'Bolan',
+            'Charade',
+            'City',
+            'Civic',
+            'Corolla GLi',
+            'Corolla XLi',
+            'Corona',
+            'FX',
+            'Hilux',
+            'Khayber',
+            'Lancer',
+            'Mehran',
+            'N-One',
+            'N-Wagon',
+            'Prado',
+        ];
     }
 }

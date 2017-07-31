@@ -25,18 +25,13 @@ class AdsRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'city'=>'required',
-            'year'=>'required',
             'car_make'=>'required',
             'car_model'=>'required',
-            'car_version'=>'required',
-            'registration_city'=>'required',
+            'car_year'=>'required',
             'mileage'=>'required',
-            'exterior_color'=>'required',
-            'description'=>'required',
+            'car_color'=>'required',
             'price'=>'required',
-            'seller_name'=>'required',
-            'mobile_number'=>'required',
+            'description'=>'required',
         ];
     }
 }

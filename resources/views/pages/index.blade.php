@@ -5,6 +5,10 @@
 @section('content')
 
   <div class="flexslider">
+    <div class="banner-description">
+      <h1>Welcome to {!! config('vars.site_name') !!}</h1>
+      <p>Lorem ipsum duis dolore proident occaecat officia cillum esse deserunt irure irure velit reprehenderit non.</p>
+    </div>
     <ul class="slides">
       <li>
         <img src="images/car1.jpg" />
@@ -17,8 +21,6 @@
       </li>
     </ul>
   </div>
-  <h1>Welcome to <span style="color: #006621;">{!! config('vars.site_name') !!}</span></h1>
-  <div class="jumbotron"><p>Lorem ipsum duis dolore proident occaecat officia cillum esse deserunt irure irure velit reprehenderit non.</p></div>
 
 @stop
 

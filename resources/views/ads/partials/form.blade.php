@@ -6,7 +6,7 @@
     </div>
     <div class="col-lg-6">
       {!! Form::label('Make') !!}
-      {!! Form::select('car_make', ['toyo'=>'Toyota','Honda','Suzuki','Nissan','Daihatsu'], null, ['class'=>'form-control']) !!}
+      {!! Form::select('car_make', $makers, null, ['class'=>'form-control']) !!}
     </div>
   </div>
 </div>
@@ -26,7 +26,7 @@
   <div class="row">
     <div class="col-lg-6">
       {!! Form::label('Mileage') !!}
-      {!! Form::number('mileage', null, ['class'=>'form-control']) !!}
+      {!! Form::number('car_mileage', null, ['class'=>'form-control']) !!}
     </div>
     <div class="col-lg-6">
       {!! Form::label('Color') !!}
@@ -38,11 +38,11 @@
   <div class="row">
     <div class="col-lg-6">
       {!! Form::label('Type') !!}
-      {!! Form::select('car_type',['Sedan','Hatchback','Convertible','Minivan','SUV'], null, ['class'=>'form-control']) !!}
+      {!! Form::select('car_type', $types, null, ['class'=>'form-control']) !!}
     </div>
     <div class="col-lg-6">
       {!! Form::label('Price') !!}
-      {!! Form::text('price', null, ['class'=>'form-control']) !!}
+      {!! Form::text('car_price', null, ['class'=>'form-control']) !!}
     </div>
   </div>
 </div>

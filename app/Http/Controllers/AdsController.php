@@ -15,7 +15,8 @@ use Auth;
 class AdsController extends Controller
 {
     public function __construct() {
-        return $this->middleware('ad')->only('create', 'edit', 'destroy');
+      $this->middleware('auth', ['only'=>['create', 'edit']]);
+      $this->middleware('ad', ['only'=>['edit', 'delete']]);
     }
     /**
      * Display a listing of the resource.
@@ -112,9 +113,7 @@ class AdsController extends Controller
     {
         $request->merge(['car_year' => strtotime($request->input('car_year'))]);
         $ad = Ad::findOrFail($id);
-        $ad->update($request->all());
-        if (!empty($request->file('images'))) {
-            $image_ids = [];
+        if ($request->file('images')) {
             foreach ($request->file('images') as $key => $image) {
                 $imageName = time() ."_($key)_". $image->getClientOriginalName();
                 $imageThumb = "thumb_" . time() ."_($key)_". $image->getClientOriginalName();
@@ -133,8 +132,18 @@ class AdsController extends Controller
             }
         }
         if (!empty($request->input('default_images'))) {
-            Image::where('ad_id', $id)->whereNotIn('id', $request->input('default_images'))->delete();
+            $images = Image::where('ad_id', $id)->whereNotIn('id', $request->input('default_images'));
+            $images_to_delete = [];
+            $thumbs_to_delete = [];
+            foreach ($images->get() as $image) {
+                $images_to_delete[] = 'ads/'.$id.'/'.$image->imageName;
+                $thumbs_to_delete[] = 'ads/'.$id.'/thumb_'.$image->imageName;
+            }
+            Storage::delete($images_to_delete);
+            Storage::delete($thumbs_to_delete);
+            $images->delete();
         }
+        $ad->update($request->all());
         return redirect('ads/'.$id)->with('message', 'Ad updated.');
     }
 

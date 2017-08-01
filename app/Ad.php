@@ -22,6 +22,6 @@ class Ad extends Model
     return $this->belongsTo('App\User');
   }
   public function images() {
-    return $this->belongsToMany('App\Image')->withTimestamps();
+    return $this->hasMany('App\Image');
   }
 }

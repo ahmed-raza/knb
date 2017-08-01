@@ -16,6 +16,6 @@ class Image extends Model
     'ad_id', 'imageName', 'imagePath',
   ];
   public function ads() {
-    return $this->belongsToMany('App\Ad');
+    return $this->belongsTo('App\Ad');
   }
 }

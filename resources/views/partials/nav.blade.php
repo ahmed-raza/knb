@@ -18,7 +18,7 @@
       <li class="{{ Request::is('ads') ? 'active' : '' }}"><a href="/ads">Ads</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{ route('ads.create') }}">Create ad</a></li>
+      <li class="{{ Request::is('ads/create') ? 'active' : '' }}"><a href="{{ route('ads.create') }}">Create ad</a></li>
       @if(Auth::check())
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>

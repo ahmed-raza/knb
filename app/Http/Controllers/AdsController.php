@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AdsRequest;
 use App\User;
 use App\Ad;
-use App\Image;
 use Storage;
+use Img;
 use File;
 use Auth;
 
@@ -51,8 +51,14 @@ class AdsController extends Controller
             $image_ids = [];
             foreach ($request->file('images') as $key => $image) {
                 $imageName = time() ."_($key)_". $image->getClientOriginalName();
+                $imageThumb = "thumb_" . time() ."_($key)_". $image->getClientOriginalName();
                 $imagePath = 'ads/' . $ad->id . '/' . $imageName;
                 $upload = Storage::put($imagePath, File::get($image));
+                if ($upload) {
+                    Img::make(File::get($image))
+                    ->resize(350, 232)
+                    ->save(storage_path('app/ads/'.$ad->id.'/'.$imageThumb));
+                }
                 $ad->images()->create([
                     'ad_id'     => $ad->id,
                     'imageName' => $imageName,

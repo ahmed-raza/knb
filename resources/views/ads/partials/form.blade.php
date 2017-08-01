@@ -18,7 +18,7 @@
     </div>
     <div class="col-lg-6">
       {!! Form::label('Year') !!}
-      {!! Form::date('car_year', null, ['class'=>'form-control']) !!}
+      {!! Form::date('car_year', ($edit ? $year : null ), ['class'=>'form-control']) !!}
     </div>
   </div>
 </div>
@@ -62,6 +62,17 @@
         {!! Form::label('Images') !!}
         {!! Form::file('images[]', ['multiple'=>true]) !!}
       </div>
+    @if($edit)
+      <div class="col-lg-12">
+        @foreach($ad->images as $image)
+          <div class="default-images">
+            {!! Form::hidden('default_images[]', $image->id, ['id'=>'default_images']) !!}
+            <img src="data:image/jpeg;base64,{!! base64_encode(CustomHelper::getPath($image, 'thumb')) !!}" width="90" height="90">
+            <p><a href="javascript:void(0)" id="remove">Remove</a></p>
+          </div>
+        @endforeach
+      </div>
+    @endif
     </div>
   </fieldset>
 </div>
@@ -72,3 +83,13 @@
     </div>
 </div>
 </div>
+
+@section('scripts')
+<script>
+  $('.default-images #remove').each(function(){
+    $(this).click(function(){
+      $(this).parents('.default-images').remove();
+    });
+  });
+</script>
+@stop

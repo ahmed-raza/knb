@@ -15,7 +15,7 @@ use Auth;
 class AdsController extends Controller
 {
     public function __construct() {
-        return $this->middleware('ad')->only('create', 'edit');
+        return $this->middleware('ad')->only('create', 'edit', 'destroy');
     }
     /**
      * Display a listing of the resource.

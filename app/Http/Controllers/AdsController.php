@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AdsRequest;
 use App\User;
 use App\Ad;
+use App\Image;
 use Storage;
 use Img;
 use File;
@@ -13,6 +14,9 @@ use Auth;
 
 class AdsController extends Controller
 {
+    public function __construct() {
+        return $this->middleware('ad')->only('create', 'edit');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -89,7 +93,12 @@ class AdsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $types = $this->types();
+        $makers = $this->makers();
+        $models = $this->models();
+        $ad = Ad::findOrFail($id);
+        $year = \Carbon\Carbon::createFromTimestamp($ad->car_year)->format('Y-m-j');
+        return view('ads.edit', compact('ad', 'types', 'makers', 'models', 'year'));
     }
 
     /**
@@ -99,9 +108,34 @@ class AdsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdsRequest $request, $id)
     {
-        //
+        $request->merge(['car_year' => strtotime($request->input('car_year'))]);
+        $ad = Ad::findOrFail($id);
+        $ad->update($request->all());
+        if (!empty($request->file('images'))) {
+            $image_ids = [];
+            foreach ($request->file('images') as $key => $image) {
+                $imageName = time() ."_($key)_". $image->getClientOriginalName();
+                $imageThumb = "thumb_" . time() ."_($key)_". $image->getClientOriginalName();
+                $imagePath = 'ads/' . $ad->id . '/' . $imageName;
+                $upload = Storage::put($imagePath, File::get($image));
+                if ($upload) {
+                    Img::make(File::get($image))
+                    ->resize(350, 232)
+                    ->save(storage_path('app/ads/'.$ad->id.'/'.$imageThumb));
+                }
+                $ad->images()->create([
+                    'ad_id'     => $ad->id,
+                    'imageName' => $imageName,
+                    'imagePath' => $imagePath,
+                    ]);
+            }
+        }
+        if (!empty($request->input('default_images'))) {
+            Image::where('ad_id', $id)->whereNotIn('id', $request->input('default_images'))->delete();
+        }
+        return redirect('ads/'.$id)->with('message', 'Ad updated.');
     }
 
     /**

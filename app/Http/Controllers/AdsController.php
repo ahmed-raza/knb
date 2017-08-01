@@ -46,21 +46,20 @@ class AdsController extends Controller
     public function store(AdsRequest $request)
     {
         $request->merge(['car_year' => strtotime($request->input('car_year'))]);
-        $ads = Auth::user()->ads()->create($request->all());
+        $ad = Auth::user()->ads()->create($request->all());
         if (!empty($request->file('images'))) {
             $image_ids = [];
             foreach ($request->file('images') as $key => $image) {
                 $imageName = time() ."_($key)_". $image->getClientOriginalName();
-                $imagePath = 'articles/'.$imageName;
+                $imagePath = 'ads/' . $ad->id . '/' . $imageName;
                 $upload = Storage::put($imagePath, File::get($image));
-                $new_image = new Image;
-                $new_image->imageName = $imageName;
-                $new_image->imagePath = $imagePath;
-                $new_image->save();
-                array_push($image_ids, $new_image->id);
+                $ad->images()->create([
+                    'ad_id'     => $ad->id,
+                    'imageName' => $imageName,
+                    'imagePath' => $imagePath,
+                    ]);
             }
         }
-        $ads->images()->attach($image_ids);
         return redirect('ads')->with('message', 'Ad created.');
     }
 

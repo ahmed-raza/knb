@@ -21,3 +21,9 @@
   margin-bottom: -5px;
   display: inline-block;
 }
+
+.default-images {
+  float: left;
+  padding-right: 5px;
+  margin-top: 10px;
+}

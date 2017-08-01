@@ -70,7 +70,9 @@
                 </div>
             </div>
         </nav>
-
+        <div class="container">
+            @include('errors.messages')
+        </div>
         @yield('content')
     </div>
 

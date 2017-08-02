@@ -9,12 +9,19 @@
   <p><strong>Email:</strong> {!! $user->email !!}</p>
   <p><strong>Phone:</strong> {!! $user->phone !!}</p>
 
-  @unless($user->ads->isEmpty())
-    <ul>
-      @foreach($user->ads as $userAds)
-        <li><strong><a href="{{ route('ads.show', $userAds->id) }}">{{ $userAds->title }}</a></strong><span> (messages: {{ count($userAds->messages) }})</span></li>
-      @endforeach
-    </ul>
-  @endunless
+@stop
+
+@section('sidebar')
+
+  <fieldset>
+    <legend>My Ads</legend>
+    @unless($user->ads->isEmpty())
+      <ul class="list-group">
+        @foreach($user->ads as $userAds)
+          <li class="list-group-item"><strong><a href="{{ route('ads.show', $userAds->id) }}">{{ $userAds->title }}</a></strong><span title="Messages" class="badge">{{ count($userAds->messages) }}</span></li>
+        @endforeach
+      </ul>
+    @endunless
+  </fieldset>
 
 @stop

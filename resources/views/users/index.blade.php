@@ -16,11 +16,22 @@
   <fieldset>
     <legend>My Ads</legend>
     @unless($user->ads->isEmpty())
-      <ul class="list-group">
+      <div class="list-group">
         @foreach($user->ads as $userAds)
-          <li class="list-group-item"><strong><a href="{{ route('ads.show', $userAds->id) }}">{{ $userAds->title }}</a></strong><span title="Messages" class="badge">{{ count($userAds->messages) }}</span></li>
+          <a href="{{ route('ads.show', $userAds->id) }}" class="list-group-item">{{ $userAds->title }}<span title="Messages" class="badge">{{ count($userAds->messages) }}</span></a>
         @endforeach
-      </ul>
+      </div>
+    @endunless
+  </fieldset>
+
+  <fieldset>
+    <legend>Messages</legend>
+    @unless($user->messages->isEmpty())
+      <div class="list-group">
+        @foreach($user->messages as $userMessages)
+          <a class="list-group-item" href="#"><strong>{{ $userMessages->name }}</strong></a>
+        @endforeach
+      </div>
     @endunless
   </fieldset>
 

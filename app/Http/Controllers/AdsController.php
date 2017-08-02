@@ -178,9 +178,10 @@ class AdsController extends Controller
     }
 
     public function adsMessage(MessagesRequest $request, $id){
-        $ad = Ad::findOrFail($id);
-        $request->request->add(['ad_id' => $id]);
-        $ad->messages()->create($request->all());
+      $ad = Ad::findOrFail($id);
+      $request->request->add(['ad_id' => $id]);
+      $request->request->add(['user_id' => $ad->user->id]);
+      $ad->messages()->create($request->all());
       return redirect(route('ads.show', $id))->with('message', 'Message Sent.');
     }
 

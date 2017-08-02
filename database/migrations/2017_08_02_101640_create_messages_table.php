@@ -16,6 +16,7 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ad_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('phone')->unique();
             $table->text('message');
@@ -25,6 +26,11 @@ class CreateMessagesTable extends Migration
             $table->foreign('ad_id')
                     ->references('id')
                     ->on('ads')
+                    ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
                     ->onDelete('cascade');
         });
     }

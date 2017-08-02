@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function ads(){
         return $this->hasMany('App\Ad');
     }
+
+    public function messages(){
+        return $this->hasMany('App\Message');
+    }
 }

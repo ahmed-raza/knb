@@ -25,6 +25,7 @@ class CreateAdsTable extends Migration
             $table->string('car_color');
             $table->string('car_price');
             $table->text('description');
+            $table->integer('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
 

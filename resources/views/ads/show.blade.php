@@ -33,6 +33,15 @@
   {!! $ad->description !!}
 @stop
 
+@section('sidebar')
+<fieldset>
+  <legend>Contact</legend>
+  <p><strong>{{ $ad->user->name }}</strong></p>
+  <p><strong>Email: </strong>{{ $ad->user->email }}</p>
+  <p><strong>Phone: </strong>{{ $ad->user->phone }}</p>
+</fieldset>
+@stop
+
 @section('scripts')
 <script type="text/javascript">
   $(window).load(function() {

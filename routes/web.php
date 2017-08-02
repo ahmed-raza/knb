@@ -23,3 +23,8 @@ Route::group(['prefix'=>'user/{id}'], function(){
 
 Route::get('ads/{ad}/delete', ['as'=>'ads.delete', 'uses'=>'AdsController@delete']);
 Route::resource('ads', 'AdsController');
+
+Route::post('ads/operations', ['as'=>'ads.operations', 'uses'=>'AdminController@adsOperations']);
+Route::group(['prefix'=>'admin'], function(){
+  Route::get('dashboard', ['as'=>'admin.dashboard', 'uses'=>'AdminController@dashboard']);
+});

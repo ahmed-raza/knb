@@ -25,7 +25,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ad::all();
+        $ads = Ad::all()->where('status', 1);
         return view('ads.index', compact('ads'));
     }
 
@@ -71,7 +71,7 @@ class AdsController extends Controller
                     ]);
             }
         }
-        return redirect('ads')->with('message', 'Ad created.');
+        return redirect('ads')->with('message', 'Ad created but is not published yet, waiting for admin approval.');
     }
 
     /**

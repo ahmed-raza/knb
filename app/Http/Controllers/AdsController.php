@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AdsRequest;
+use App\Http\Requests\MessagesRequest;
 use App\User;
 use App\Ad;
 use App\Image;
@@ -174,6 +175,13 @@ class AdsController extends Controller
       $ad->images()->delete();
       $ad->delete();
       return redirect('ads')->with('message', 'Ad deleted');
+    }
+
+    public function adsMessage(MessagesRequest $request, $id){
+        $ad = Ad::findOrFail($id);
+        $request->request->add(['ad_id' => $id]);
+        $ad->messages()->create($request->all());
+      return redirect(route('ads.show', $id))->with('message', 'Message Sent.');
     }
 
     private function types(){

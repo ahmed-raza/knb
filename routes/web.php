@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/', ['as'=>'home', 'uses'=>'PagesController@index']);
+Route::get('about', ['as'=>'about', 'uses'=>'PagesController@about']);
 Route::get('user/profile', ['as'=>'user.profile', 'uses'=>'UsersController@profile']);
 
 Route::group(['prefix'=>'user/{id}'], function(){
@@ -21,10 +22,11 @@ Route::group(['prefix'=>'user/{id}'], function(){
   Route::get('logout', ['as'=>'user.logout', 'uses'=>'UsersController@logout']);
 });
 
+Route::post('ads/{ad}/send-message', ['as'=>'ads.message', 'uses'=>'AdsController@adsMessage']);
 Route::get('ads/{ad}/delete', ['as'=>'ads.delete', 'uses'=>'AdsController@delete']);
 Route::resource('ads', 'AdsController');
 
-Route::post('ads/operations', ['as'=>'ads.operations', 'uses'=>'AdminController@adsOperations']);
 Route::group(['prefix'=>'admin'], function(){
+  Route::post('operations', ['as'=>'admin.operations', 'uses'=>'AdminController@adsOperations']);
   Route::get('dashboard', ['as'=>'admin.dashboard', 'uses'=>'AdminController@dashboard']);
 });

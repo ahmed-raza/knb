@@ -8633,3 +8633,8 @@ html[xmlns] .slides {
   padding-right: 5px;
   margin-top: 10px;
 }
+
+input.has-error,
+input.has-error:focus {
+  border: 1px solid red;
+}

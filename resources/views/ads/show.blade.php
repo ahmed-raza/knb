@@ -3,6 +3,10 @@
 @section('content')
 
   <h1>{{ $ad->title }}</h1>
+  @if(Auth::check() && Auth::user()->id === $ad->user->id)
+    <a href="{{ route('ads.edit', $ad->id) }}" class="btn btn-warning">Edit</a>
+    <a href="{{ route('ads.destroy', $ad->id) }}" class="btn btn-danger">Delete</a>
+  @endif
   @if($ad->images)
     <div class="flexslider">
       <ul class="slides">

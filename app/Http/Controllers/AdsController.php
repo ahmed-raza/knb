@@ -98,7 +98,7 @@ class AdsController extends Controller
         $makers = $this->makers();
         $models = $this->models();
         $ad = Ad::findOrFail($id);
-        $year = \Carbon\Carbon::createFromTimestamp($ad->car_year)->format('Y-m-j');
+        $year = \Carbon\Carbon::createFromTimestamp($ad->car_year)->format('Y-m-d');
         return view('ads.edit', compact('ad', 'types', 'makers', 'models', 'year'));
     }
 
@@ -123,6 +123,24 @@ class AdsController extends Controller
             Storage::delete($images_to_delete);
             Storage::delete($thumbs_to_delete);
             $images->delete();
+        }
+        if (!empty($request->file('images'))) {
+            foreach ($request->file('images') as $key => $image) {
+                $imageName = time() ."_($key)_". $image->getClientOriginalName();
+                $imageThumb = "thumb_" . time() ."_($key)_". $image->getClientOriginalName();
+                $imagePath = 'ads/' . $ad->id . '/' . $imageName;
+                $upload = Storage::put($imagePath, File::get($image));
+                if ($upload) {
+                    Img::make(File::get($image))
+                    ->resize(350, 232)
+                    ->save(storage_path('app/ads/'.$ad->id.'/'.$imageThumb));
+                }
+                $ad->images()->create([
+                    'ad_id'     => $ad->id,
+                    'imageName' => $imageName,
+                    'imagePath' => $imagePath,
+                    ]);
+            }
         }
         $request->merge(['car_year' => strtotime($request->input('car_year'))]);
         $ad->update($request->all());

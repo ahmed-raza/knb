@@ -111,26 +111,7 @@ class AdsController extends Controller
      */
     public function update(AdsRequest $request, $id)
     {
-        $request->merge(['car_year' => strtotime($request->input('car_year'))]);
         $ad = Ad::findOrFail($id);
-        if ($request->file('images')) {
-            foreach ($request->file('images') as $key => $image) {
-                $imageName = time() ."_($key)_". $image->getClientOriginalName();
-                $imageThumb = "thumb_" . time() ."_($key)_". $image->getClientOriginalName();
-                $imagePath = 'ads/' . $ad->id . '/' . $imageName;
-                $upload = Storage::put($imagePath, File::get($image));
-                if ($upload) {
-                    Img::make(File::get($image))
-                    ->resize(350, 232)
-                    ->save(storage_path('app/ads/'.$ad->id.'/'.$imageThumb));
-                }
-                $ad->images()->create([
-                    'ad_id'     => $ad->id,
-                    'imageName' => $imageName,
-                    'imagePath' => $imagePath,
-                    ]);
-            }
-        }
         if (!empty($request->input('default_images'))) {
             $images = Image::where('ad_id', $id)->whereNotIn('id', $request->input('default_images'));
             $images_to_delete = [];
@@ -143,6 +124,7 @@ class AdsController extends Controller
             Storage::delete($thumbs_to_delete);
             $images->delete();
         }
+        $request->merge(['car_year' => strtotime($request->input('car_year'))]);
         $ad->update($request->all());
         return redirect('ads/'.$id)->with('message', 'Ad updated.');
     }

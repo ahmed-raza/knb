@@ -7,7 +7,7 @@
     <a href="{{ route('ads.edit', $ad->id) }}" class="btn btn-warning">Edit</a>
     <a href="{{ route('ads.delete', $ad->id) }}" class="btn btn-danger">Delete</a>
   @endif
-  @if($ad->images)
+  @unless($ad->images->isEmpty())
     <div class="flexslider">
       <ul class="slides">
         @foreach($ad->images as $image)
@@ -15,7 +15,7 @@
         @endforeach
       </ul>
     </div>
-  @endif
+  @endunless
   <div class="jumbotron">
     <div class="row">
       <div class="col-lg-6">
@@ -40,6 +40,7 @@
   <p><strong>Email: </strong>{{ $ad->user->email }}</p>
   <p><strong>Phone: </strong>{{ $ad->user->phone }}</p>
 </fieldset>
+@include('ads.partials.contact')
 @stop
 
 @section('scripts')

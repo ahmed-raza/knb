@@ -148,6 +148,20 @@ class AdsController extends Controller
     }
 
     /**
+     * Delete Confirmation view.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+      $ad = Ad::findOrFail($id);
+      $route = route('ads.destroy', $id);
+      $item = $ad->title;
+      return view('partials.delete',compact('item', 'route'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -155,7 +169,11 @@ class AdsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $ad = Ad::findOrFail($id);
+      Storage::deleteDirectory('ads/'.$id);
+      $ad->images()->delete();
+      $ad->delete();
+      return redirect('ads')->with('message', 'Ad deleted');
     }
 
     private function types(){

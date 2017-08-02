@@ -19,6 +19,6 @@ class Admin
         if (Auth::check() && Auth::user()->rank === 'admin') {
             return $next($request);
         }
-        return response()->view('errors.403');
+        return abort(403);
     }
 }

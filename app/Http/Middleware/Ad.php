@@ -22,6 +22,6 @@ class Ad
         if ((Auth::check() && Auth::user()->id === $ad->user->id) || (Auth::check() && Auth::user()->isAdmin())) {
             return $next($request);
         }
-        return response()->view('errors.403');
+        return abort(403);
     }
 }

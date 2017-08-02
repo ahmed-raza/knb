@@ -20,7 +20,7 @@
 @section('content')
   <fieldset>
     <legend>Ads</legend>
-    {!! Form::open(['url'=>route('ads.operations')]) !!}
+    {!! Form::open(['url'=>route('admin.operations')]) !!}
     <div class="form-group">
       <div class="row">
         <div class="col-lg-4">

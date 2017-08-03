@@ -27,6 +27,7 @@ Route::post('ads/search', ['as'=>'ads.search', 'uses'=>'AdsController@search']);
 Route::post('ads/{ad}/send-message', ['as'=>'ads.message', 'uses'=>'AdsController@adsMessage']);
 Route::get('ads/{ad}/delete', ['as'=>'ads.delete', 'uses'=>'AdsController@delete']);
 Route::resource('ads', 'AdsController');
+Route::resource('contact', 'ContactController', ['only'=>['index', 'store']]);
 
 Route::group(['prefix'=>'admin'], function(){
   Route::post('operations', ['as'=>'admin.operations', 'uses'=>'AdminController@adsOperations']);

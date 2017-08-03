@@ -18,6 +18,7 @@
         <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">About</a></li>
         <li class="{{ Request::is('ads') ? 'active' : '' }}"><a href="{{ route('ads.index') }}">Ads</a></li>
         <li class="{{ Request::is('team') ? 'active' : '' }}"><a href="{{ route('team') }}">Team</a></li>
+        <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ route('contact.index') }}">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="{{ Request::is('ads/create') ? 'active' : '' }}"><a href="{{ route('ads.create') }}">Create ad</a></li>

@@ -72,3 +72,16 @@ input.has-error:focus {
 .ad-row h2 {
   margin-top: 0px;
 }
+
+.team .info {
+  position: relative;
+}
+
+.team .description {
+  position: absolute;
+  bottom: 0;
+  padding: 10px 10px 0px 10px;
+  background: #333;
+  opacity: 0.9;
+  color: white;
+}

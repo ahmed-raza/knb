@@ -1,12 +1,21 @@
 @extends('app')
 
 @section('content')
-
-  <h1>{{ $ad->title }}</h1>
-  @if(Auth::check() && Auth::user()->id === $ad->user->id)
-    <a href="{{ route('ads.edit', $ad->id) }}" class="btn btn-warning">Edit</a>
-    <a href="{{ route('ads.delete', $ad->id) }}" class="btn btn-danger">Delete</a>
-  @endif
+  
+  <div class="row">  
+    <h1 class="{{ (CustomHelper::owner($ad)) ? 'col-lg-10' : 'col-lg-12' }}">{{ $ad->title }}</h1>
+    @if(Auth::check() && Auth::user()->id === $ad->user->id)
+      <div class="dropdown pull-right col-lg-2 user-actions">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Actions
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="{{ route('ads.edit', $ad->id) }}">Edit</a></li>
+          <li><a href="{{ route('ads.delete', $ad->id) }}">Delete</a></li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    @endif
+  </div>
   @unless($ad->images->isEmpty())
     <div class="flexslider">
       <ul class="slides">

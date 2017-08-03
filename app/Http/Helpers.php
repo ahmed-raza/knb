@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Storage;
+use Auth;
 
 class CustomHelper {
   public static function getPath($image, $type){
@@ -17,5 +18,11 @@ class CustomHelper {
         return $image_path;
         break;
     }
+  }
+  public static function owner($ad){
+    if (Auth::check() && Auth::user()->id === $ad->user->id) {
+      return true;
+    }
+    return false;
   }
 }

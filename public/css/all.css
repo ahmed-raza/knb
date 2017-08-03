@@ -8664,3 +8664,12 @@ input.has-error:focus {
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
+
+.user-actions {
+  margin-top: 20px;
+  margin-right: -15px;
+}
+
+.user-actions ul.dropdown-menu {
+  margin-right: 30px;
+}

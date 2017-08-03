@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::get('/', ['as'=>'home', 'uses'=>'PagesController@index']);
 Route::get('about', ['as'=>'about', 'uses'=>'PagesController@about']);
+Route::get('team', ['as'=>'team', 'uses'=>'PagesController@team']);
 Route::get('user/profile', ['as'=>'user.profile', 'uses'=>'UsersController@profile']);
 
 Route::group(['prefix'=>'user/{id}'], function(){

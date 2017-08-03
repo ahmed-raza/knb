@@ -27,4 +27,46 @@ class Ad extends Model
   public function messages() {
     return $this->hasMany('App\Message');
   }
+
+  public static function types(){
+      return [
+          'SUV'           => 'SUV',
+          'Sedan'         => 'Sedan',
+          'Minivan'       => 'Minivan',
+          'Hatchback'     => 'Hatchback',
+          'Convertible'   => 'Convertible',
+      ];
+  }
+
+  public static function makers(){
+      return [
+          'Honda'     => 'Honda',
+          'Suzuki'    => 'Suzuki',
+          'Nissan'    => 'Nissan',
+          'Toyota'    => 'Toyota',
+          'Daihatsu'  => 'Daihatsu',
+      ];
+  }
+
+  public static function models(){
+      return [
+          'Accord'        => 'Accord',
+          'Baleno'        => 'Baleno',
+          'Bolan'         => 'Bolan',
+          'Charade'       => 'Charade',
+          'City'          => 'City',
+          'Civic'         => 'Civic',
+          'Corolla GLi'   => 'Corolla GLi',
+          'Corolla XLi'   => 'Corolla XLi',
+          'Corona'        => 'Corona',
+          'FX'            => 'FX',
+          'Hilux'         => 'Hilux',
+          'Khayber'       => 'Khayber',
+          'Lancer'        => 'Lancer',
+          'Mehran'        => 'Mehran',
+          'N-One'         => 'N-One',
+          'N-Wagon'       => 'N-Wagon',
+          'Prado'         => 'Prado',
+      ];
+  }
 }

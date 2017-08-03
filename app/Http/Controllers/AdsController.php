@@ -37,9 +37,9 @@ class AdsController extends Controller
      */
     public function create()
     {
-        $types = $this->types();
-        $makers = $this->makers();
-        $models = $this->models();
+        $types = Ad::types();
+        $makers = Ad::makers();
+        $models = Ad::models();
         return view('ads.create', compact('types', 'makers', 'models'));
     }
 
@@ -183,47 +183,5 @@ class AdsController extends Controller
       $request->request->add(['user_id' => $ad->user->id]);
       $ad->messages()->create($request->all());
       return redirect(route('ads.show', $id))->with('message', 'Message Sent.');
-    }
-
-    private function types(){
-        return [
-            'SUV'           => 'SUV',
-            'Sedan'         => 'Sedan',
-            'Minivan'       => 'Minivan',
-            'Hatchback'     => 'Hatchback',
-            'Convertible'   => 'Convertible',
-        ];
-    }
-
-    private function makers(){
-        return [
-            'Honda'     => 'Honda',
-            'Suzuki'    => 'Suzuki',
-            'Nissan'    => 'Nissan',
-            'Toyota'    => 'Toyota',
-            'Daihatsu'  => 'Daihatsu',
-        ];
-    }
-
-    private function models(){
-        return [
-            'Accord'        => 'Accord',
-            'Baleno'        => 'Baleno',
-            'Bolan'         => 'Bolan',
-            'Charade'       => 'Charade',
-            'City'          => 'City',
-            'Civic'         => 'Civic',
-            'Corolla GLi'   => 'Corolla GLi',
-            'Corolla XLi'   => 'Corolla XLi',
-            'Corona'        => 'Corona',
-            'FX'            => 'FX',
-            'Hilux'         => 'Hilux',
-            'Khayber'       => 'Khayber',
-            'Lancer'        => 'Lancer',
-            'Mehran'        => 'Mehran',
-            'N-One'         => 'N-One',
-            'N-Wagon'       => 'N-Wagon',
-            'Prado'         => 'Prado',
-        ];
     }
 }

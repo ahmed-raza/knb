@@ -95,9 +95,9 @@ class AdsController extends Controller
      */
     public function edit($id)
     {
-        $types = $this->types();
-        $makers = $this->makers();
-        $models = $this->models();
+        $types = Ad::types();
+        $makers = Ad::makers();
+        $models = Ad::models();
         $ad = Ad::findOrFail($id);
         $year = \Carbon\Carbon::createFromTimestamp($ad->car_year)->format('Y-m-d');
         return view('ads.edit', compact('ad', 'types', 'makers', 'models', 'year'));
@@ -183,5 +183,31 @@ class AdsController extends Controller
       $request->request->add(['user_id' => $ad->user->id]);
       $ad->messages()->create($request->all());
       return redirect(route('ads.show', $id))->with('message', 'Message Sent.');
+    }
+
+    public function search(Request $request){
+        if ($request->ajax()) {
+            $title = $request->get('title');
+            $types = $request->get('car_type');
+            $makers = $request->get('car_make');
+            $models = $request->get('car_model');
+            $min_price = $request->get('min_price');
+            $max_price = $request->get('max_price');
+            $ads = Ad::where('title', 'like' , "%$title%");
+            if (isset($makers)) {
+                $ads->whereIn('car_make', $makers);
+            }
+            if (isset($models)) {
+                $ads->whereIn('car_model', $models);
+            }
+            if (isset($types)) {
+                $ads->whereIn('car_type', $types);
+            }
+            if (isset($min_price) && isset($max_price)) {
+                $ads->whereBetween('car_price', [$min_price, $max_price]);
+            }
+            $ads = $ads->get();
+            return view('ads.partials.results', compact('ads'));
+        }
     }
 }

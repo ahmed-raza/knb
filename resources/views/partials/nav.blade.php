@@ -15,8 +15,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="/about">About</a></li>
-        <li class="{{ Request::is('ads') ? 'active' : '' }}"><a href="/ads">Ads</a></li>
+        <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">About</a></li>
+        <li class="{{ Request::is('ads') ? 'active' : '' }}"><a href="{{ route('ads.index') }}">Ads</a></li>
+        <li class="{{ Request::is('team') ? 'active' : '' }}"><a href="{{ route('team') }}">Team</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="{{ Request::is('ads/create') ? 'active' : '' }}"><a href="{{ route('ads.create') }}">Create ad</a></li>

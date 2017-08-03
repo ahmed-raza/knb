@@ -1,6 +1,6 @@
 <?php 
 
 return [
-  'site_name'=>'Karz and Bikes',
+  'site_name'=>'Motor Classifieds',
   'slogan'=>'Welcome',
 ];

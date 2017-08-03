@@ -5,6 +5,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{!! config('app.name') !!} | @yield('title')</title>
   {!! HTML::style('css/all.css') !!}
+  {!! HTML::style('fa/css/font-awesome.min.css') !!}
   {!! HTML::script('js/all.js') !!}
   {!! HTML::script('ckeditor/ckeditor.js') !!}
 </head>

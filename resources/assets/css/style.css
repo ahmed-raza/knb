@@ -67,3 +67,8 @@ input.has-error:focus {
 .user-actions ul.dropdown-menu {
   margin-right: 30px;
 }
+
+.ad-row .ad-thumb,
+.ad-row h2 {
+  margin-top: 0px;
+}

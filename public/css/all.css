@@ -8638,3 +8638,12 @@ input.has-error,
 input.has-error:focus {
   border: 1px solid red;
 }
+
+.main-menu {
+  margin-top: 15px;
+}
+
+.logo {
+  margin-right: 10px;
+  color: #50457B;
+}

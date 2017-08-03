@@ -9,7 +9,7 @@
   {!! HTML::script('js/all.js') !!}
   {!! HTML::script('ckeditor/ckeditor.js') !!}
 </head>
-<body>
+<body class="@yield('body-class')">
   <div class="off-canvas-container">
     @include('partials.nav')
     <div class="main-content">

@@ -22,6 +22,7 @@ Route::group(['prefix'=>'user/{id}'], function(){
   Route::get('logout', ['as'=>'user.logout', 'uses'=>'UsersController@logout']);
 });
 
+Route::post('ads/search', ['as'=>'ads.search', 'uses'=>'AdsController@search']);
 Route::post('ads/{ad}/send-message', ['as'=>'ads.message', 'uses'=>'AdsController@adsMessage']);
 Route::get('ads/{ad}/delete', ['as'=>'ads.delete', 'uses'=>'AdsController@delete']);
 Route::resource('ads', 'AdsController');

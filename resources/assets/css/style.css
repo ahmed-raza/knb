@@ -41,3 +41,20 @@ input.has-error:focus {
   margin-right: 10px;
   color: #50457B;
 }
+
+.off-canvas-container{
+ display: -webkit-box;
+ display: -ms-flexbox;
+ display: flex;
+ min-height: 100vh;
+ -ms-flex-direction: column;
+ flex-direction: column;
+ -webkit-box-orient: vertical;
+ -webkit-box-direction: normal;
+}
+
+.off-canvas-container .main-content{
+ -webkit-box-flex: 1;
+ -ms-flex: 1 0 auto;
+ flex: 1 0 auto;
+}

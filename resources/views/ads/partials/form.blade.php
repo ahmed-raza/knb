@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-lg-6">
       {!! Form::label('title') !!}
-      {!! Form::text('title', null, ['class'=>'form-control']) !!}
+      {!! Form::text('title', null, ['class'=>$errors->has('title') ? 'form-control has-error' : 'form-control']) !!}
     </div>
     <div class="col-lg-6">
       {!! Form::label('Make') !!}
-      {!! Form::select('car_make', $makers, null, ['class'=>'form-control']) !!}
+      {!! Form::select('car_make', $makers, null, ['class'=>$errors->has('car_make') ? 'form-control has-error' : 'form-control']) !!}
     </div>
   </div>
 </div>
@@ -14,11 +14,11 @@
   <div class="row">
     <div class="col-lg-6">
       {!! Form::label('Model') !!}
-      {!! Form::select('car_model', $models, null, ['class'=>'form-control']) !!}
+      {!! Form::select('car_model', $models, null, ['class'=>$errors->has('car_model') ? 'form-control has-error' : 'form-control']) !!}
     </div>
     <div class="col-lg-6">
       {!! Form::label('Year') !!}
-      {!! Form::date('car_year', ($edit ? $year : null ), ['class'=>'form-control']) !!}
+      {!! Form::date('car_year', ($edit ? $year : null ), ['class'=>$errors->has('car_year') ? 'form-control has-error' : 'form-control']) !!}
     </div>
   </div>
 </div>
@@ -26,11 +26,11 @@
   <div class="row">
     <div class="col-lg-6">
       {!! Form::label('Mileage') !!}
-      {!! Form::number('car_mileage', null, ['class'=>'form-control']) !!}
+      {!! Form::number('car_mileage', null, ['class'=>$errors->has('car_mileage') ? 'form-control has-error' : 'form-control']) !!}
     </div>
     <div class="col-lg-6">
       {!! Form::label('Color') !!}
-      {!! Form::color('car_color', null, ['class'=>'form-control']) !!}
+      {!! Form::color('car_color', null, ['class'=>$errors->has('car_color') ? 'form-control has-error' : 'form-control']) !!}
     </div>
   </div>
 </div>
@@ -38,11 +38,11 @@
   <div class="row">
     <div class="col-lg-6">
       {!! Form::label('Type') !!}
-      {!! Form::select('car_type', $types, null, ['class'=>'form-control']) !!}
+      {!! Form::select('car_type', $types, null, ['class'=>$errors->has('car_type') ? 'form-control has-error' : 'form-control']) !!}
     </div>
     <div class="col-lg-6">
       {!! Form::label('Price') !!}
-      {!! Form::text('car_price', null, ['class'=>'form-control']) !!}
+      {!! Form::text('car_price', null, ['class'=>$errors->has('car_price') ? 'form-control has-error' : 'form-control']) !!}
     </div>
   </div>
 </div>
@@ -60,7 +60,7 @@
     <div class="row">
       <div class="col-lg-12">
         {!! Form::label('Images') !!}
-        {!! Form::file('images[]', ['multiple'=>true]) !!}
+        {!! Form::file('images[]', ['multiple'=>true, 'class'=>'form-control']) !!}
       </div>
     @if($edit)
       <div class="col-lg-12">

@@ -10,15 +10,15 @@
   {!! Form::open(['url'=>route('contact.store')]) !!}
     <div class="form-group">
       {!! Form::label('name') !!}
-      {!! Form::text('name', null, ['class'=>'form-control']) !!}
+      {!! Form::text('name', null, ['class'=>$errors->has('name') ? 'form-control has-error' : 'form-control']) !!}
     </div>
     <div class="form-group">
       {!! Form::label('email') !!}
-      {!! Form::email('email', null, ['class'=>'form-control']) !!}
+      {!! Form::email('email', null, ['class'=>$errors->has('email') ? 'form-control has-error' : 'form-control']) !!}
     </div>
     <div class="form-group">
       {!! Form::label('subject') !!}
-      {!! Form::text('subject', null, ['class'=>'form-control']) !!}
+      {!! Form::text('subject', null, ['class'=>$errors->has('subject') ? 'form-control has-error' : 'form-control']) !!}
     </div>
     <div class="form-group">
       {!! Form::label('message') !!}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Ad;
 use App\User;
 use App\Image;
+use App\Contact;
 use Validator;
 use Storage;
 use DB;
@@ -19,7 +20,8 @@ class AdminController extends Controller
   public function dashboard(){
     $ads = Ad::all();
     $users = User::all();
-    return view('admin.dashboard', compact('ads', 'users'));
+    $messages = Contact::all();
+    return view('admin.dashboard', compact('ads', 'users', 'messages'));
   }
   public function adsOperations(Request $request){
     $rules = ['id' => 'required'];

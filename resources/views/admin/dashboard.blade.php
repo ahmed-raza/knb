@@ -67,6 +67,27 @@
     {!! Form::close() !!}
     {!! HTML::link('ads', 'See All', ['class'=>'pull-right']) !!}
   </fieldset>
+  <fieldset>
+    <legend>Contact</legend>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Subject</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($messages as $message)
+          <tr>
+            <td>{{ $message->name }}</td>
+            <td>{{ $message->email }}</td>
+            <td>{{ str_limit($message->subject, 50) }}</td>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </fieldset>
   <script type="text/javascript">
     $(document).ready(function(){
       $('form input#all').click(function(){

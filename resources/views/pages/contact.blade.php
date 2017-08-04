@@ -7,26 +7,25 @@
 @section('content')
 
   <h1>Contact</h1>
-  <form action="{{ route('contact.store') }}" method="post">
-    {!! csrf_field() !!}
+  {!! Form::open(['url'=>route('contact.store')]) !!}
     <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" class="form-control">
+      {!! Form::label('name') !!}
+      {!! Form::text('name', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" class="form-control">
+      {!! Form::label('email') !!}
+      {!! Form::email('email', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-      <label for="subject">Subject</label>
-      <input type="text" name="subject" id="subject" class="form-control">
+      {!! Form::label('subject') !!}
+      {!! Form::text('subject', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-      <label for="message">Message</label>
-      <textarea name="message" id="message" class="ckeditor"></textarea>
+      {!! Form::label('message') !!}
+      {!! Form::textarea('message', null, ['class'=>'form-control ckeditor']) !!}
     </div>
     <div class="form-group">
       <input type="submit" value="Send" class="btn btn-block btn-warning">
     </div>
-  </form>
+  {!! Form::close() !!}
 @stop

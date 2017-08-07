@@ -209,8 +209,15 @@ class AdsController extends Controller
             $ads->whereBetween('car_price', [$min_price, $max_price]);
         }
         if (!empty($ads)) {
-            $ads = $ads->orderBy('created_at', 'desc')->paginate(3);
-            return view('ads.partials.results', compact('ads'))->render();
+            $ads = $ads->orderBy('created_at', 'desc')->paginate(3)->appends([
+                'title' => $title,
+                'car_type' => $types,
+                'car_make' => $makers,
+                'car_model' => $models,
+                'min_price' => $min_price,
+                'max_price' => $max_price,
+                ]);
+            return view('ads.partials.results', compact('ads', 'request'))->render();
         } else {
             return false;
         }

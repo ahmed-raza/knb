@@ -1,6 +1,6 @@
 <fieldset>
   <legend>Search</legend>
-  <form action="#" id="ad-search" method="GET">
+  <form action="{{ route('ads.index') }}" id="ad-search" method="GET">
     {!! csrf_field() !!}
     <div class="form-group">
       <input type="text" name="title" id="title" placeholder="Keywords.." class="form-control">
@@ -52,6 +52,7 @@
 <script type="text/javascript">
   $('#ad-search').submit(function(e){
     e.preventDefault();
+    var action = $(this).attr('action');
     var title = $(this).find('#title').val();
     var min_price = $(this).find('#min-price').val();
     var max_price = $(this).find('#max-price').val();
@@ -70,7 +71,7 @@
 
     $.ajax({
       type: 'GET',
-      url: 'ads/search',
+      url: action,
       data: {
         _token: "{{ csrf_token() }}",
         title: title,
@@ -83,9 +84,6 @@
       success: function(data){
         $('.ads').attr('id', 'results');
         $('#results').html(data);
-        if(data.length === 0){
-          $('div#results').append('<p>No results found.</p>');
-        }
       }
     });
 

@@ -23,8 +23,8 @@
         </div>
       </div>
     @endforeach
+    {!! $ads->render() !!}
   </div>
-  {!! $ads->render() !!}
 @stop
 
 @section('sidebar')

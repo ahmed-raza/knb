@@ -24,9 +24,12 @@ class AdsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ads = Ad::where('status', 1)->paginate(3);
+        if ($request->ajax()) {
+            return $this->search($request);
+        }
+        $ads = Ad::where('status', 1)->orderBy('created_at', 'desc')->paginate(3);
         return view('ads.index', compact('ads'));
     }
 
@@ -185,29 +188,31 @@ class AdsController extends Controller
       return redirect(route('ads.show', $id))->with('message', 'Message Sent.');
     }
 
-    public function search(Request $request){
-        if ($request->ajax()) {
-            $title = $request->get('title');
-            $types = $request->get('car_type');
-            $makers = $request->get('car_make');
-            $models = $request->get('car_model');
-            $min_price = $request->get('min_price');
-            $max_price = $request->get('max_price');
-            $ads = Ad::where('title', 'like' , "%$title%");
-            if (isset($makers)) {
-                $ads->whereIn('car_make', $makers);
-            }
-            if (isset($models)) {
-                $ads->whereIn('car_model', $models);
-            }
-            if (isset($types)) {
-                $ads->whereIn('car_type', $types);
-            }
-            if (isset($min_price) && isset($max_price)) {
-                $ads->whereBetween('car_price', [$min_price, $max_price]);
-            }
-            $ads = $ads->get();
-            return view('ads.partials.results', compact('ads'));
+    private function search($request){
+        $title = $request->get('title');
+        $types = $request->get('car_type');
+        $makers = $request->get('car_make');
+        $models = $request->get('car_model');
+        $min_price = $request->get('min_price');
+        $max_price = $request->get('max_price');
+        $ads = Ad::where('title', 'like' , "%$title%");
+        if (isset($makers)) {
+            $ads->whereIn('car_make', $makers);
+        }
+        if (isset($models)) {
+            $ads->whereIn('car_model', $models);
+        }
+        if (isset($types)) {
+            $ads->whereIn('car_type', $types);
+        }
+        if (isset($min_price) && isset($max_price)) {
+            $ads->whereBetween('car_price', [$min_price, $max_price]);
+        }
+        if (!empty($ads)) {
+            $ads = $ads->orderBy('created_at', 'desc')->paginate(3);
+            return view('ads.partials.results', compact('ads'))->render();
+        } else {
+            return false;
         }
     }
 }

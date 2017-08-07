@@ -26,7 +26,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ad::all()->where('status', 1);
+        $ads = Ad::where('status', 1)->paginate(3);
         return view('ads.index', compact('ads'));
     }
 

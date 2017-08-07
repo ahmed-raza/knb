@@ -24,6 +24,7 @@
       </div>
     @endforeach
   </div>
+  {!! $ads->render() !!}
 @stop
 
 @section('sidebar')

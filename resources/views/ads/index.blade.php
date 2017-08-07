@@ -25,6 +25,31 @@
     @endforeach
     {!! $ads->render() !!}
   </div>
+  <script type="text/javascript">
+    $(function() {
+      $('.pagination a').click(function(e) {
+          e.preventDefault();
+
+          $('#load a').css('color', '#dfecf6');
+          $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="images/throbber.gif" />');
+
+          var url = $(this).attr('href');
+          getArticles(url);
+          window.history.pushState("", "", url);
+      });
+
+      function getArticles(url) {
+          $.ajax({
+              url : url
+          }).done(function (data) {
+            $('.ads').attr('id', 'results');
+            $('#results').html(data);
+          }).fail(function () {
+              alert('Articles could not be loaded.');
+          });
+      }
+    });
+  </script>
 @stop
 
 @section('sidebar')

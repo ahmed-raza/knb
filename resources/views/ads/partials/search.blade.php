@@ -1,6 +1,6 @@
 <fieldset>
   <legend>Search</legend>
-  <form action="#" id="ad-search">
+  <form action="#" id="ad-search" method="GET">
     {!! csrf_field() !!}
     <div class="form-group">
       <input type="text" name="title" id="title" placeholder="Keywords.." class="form-control">
@@ -69,7 +69,7 @@
     });
 
     $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: 'ads/search',
       data: {
         _token: "{{ csrf_token() }}",

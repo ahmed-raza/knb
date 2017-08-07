@@ -85,3 +85,8 @@ input.has-error:focus {
   opacity: 0.9;
   color: white;
 }
+
+.checkboxes {
+  display: inline;
+  margin: 0 10px 0px 0px;
+}

@@ -19,7 +19,7 @@ class Ad
     {
         $id = $request->route()->parameters();
         $ad = \App\Ad::findOrFail($id['ad']);
-        if ((Auth::check() && Auth::user()->id === $ad->user->id) || (Auth::check() && Auth::user()->isAdmin())) {
+        if ((Auth::check() && Auth::user()->id === $ad->user->id) || (Auth::check() && Auth::user()->rank === 'admin')) {
             return $next($request);
         }
         return abort(403);

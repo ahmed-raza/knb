@@ -19,8 +19,8 @@ class CustomHelper {
         break;
     }
   }
-  public static function owner($ad){
-    if (Auth::check() && Auth::user()->id === $ad->user->id) {
+  public static function ownerOrAdmin($ad){
+    if ((Auth::check() && Auth::user()->id === $ad->user->id) || (Auth::check() && Auth::user()->rank === 'admin')) {
       return true;
     }
     return false;

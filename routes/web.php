@@ -34,5 +34,7 @@ Route::resource('contact', 'ContactController', ['only'=>['index', 'store']]);
 
 Route::group(['prefix'=>'admin'], function(){
   Route::post('operations', ['as'=>'admin.operations', 'uses'=>'AdminController@adsOperations']);
-  Route::get('dashboard', ['as'=>'admin.dashboard', 'uses'=>'AdminController@dashboard']);
+  Route::get('content', ['as'=>'admin.content', 'uses'=>'AdminController@content']);
+  Route::get('users', ['as'=>'admin.users', 'uses'=>'AdminController@users']);
+  Route::get('contact/submissions', ['as'=>'admin.contact_submissions', 'uses'=>'AdminController@contactSubmissions']);
 });

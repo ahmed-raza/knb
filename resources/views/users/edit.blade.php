@@ -27,8 +27,10 @@
         {!! Form::file('pic', ['class'=>'form-control', 'multiple'=>false]) !!}
       </div>
       @if($user->pic)
+        {!! Form::hidden('remove-pic', 0, ['id'=>'remove']) !!}
         <div class="col-lg-6 user-pic">
           <img src="data:image/jpeg;base64,{{ base64_encode(Storage::get('users/'.$user->id.'/thumb_'.$user->pic)) }}" alt="">
+          <a href="javscript:void(0)" style="display: block" id="remove-pic">Remove</a>
         </div>
       @endif
     </div>
@@ -41,5 +43,12 @@
     {!! Form::submit('Update', ['class'=>'btn btn-primary btn-block']) !!}
   </div>
   {!! Form::close() !!}
+
+  <script type="text/javascript">
+    $('#remove-pic').click(function(){
+      $(this).parents('.user-pic').remove();
+      $('input#remove').val(1);
+    });
+  </script>
 
 @stop

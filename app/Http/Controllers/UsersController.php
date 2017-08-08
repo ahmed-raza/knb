@@ -21,7 +21,7 @@ class UsersController extends Controller
   }
   public function edit($id){
     $user = User::findorfail($id);
-    return view('users.index', compact('user'));
+    return view('users.edit', compact('user'));
   }
   public function delete($id){
     $user = User::findorfail($id);

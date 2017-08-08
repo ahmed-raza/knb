@@ -25,8 +25,24 @@
         @if(Auth::check())
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
               <li><a href="{{ route('user.profile') }}">Profile</a></li>
+              @if(Auth::user()->rank === 'admin')
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Admin</a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="{{ route('admin.content') }}">Content</a></li>
+                  <li class="dropdown-submenu">
+                    <a href="#">People</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{{ route('admin.users') }}">All Users</a></li>
+                      <li><a href="#">Roles</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="{{ route('admin.contact_submissions') }}">Contact Submissions</a></li>
+                </ul>
+              </li>
+              @endif
               <li role="separator" class="divider"></li>
               <li><a href="{{ route('user.logout', Auth::user()->id) }}">Logout</a></li>
             </ul>

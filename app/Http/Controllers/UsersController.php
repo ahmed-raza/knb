@@ -19,6 +19,14 @@ class UsersController extends Controller
     $user = User::findorfail($id);
     return view('users.index', compact('user'));
   }
+  public function edit($id){
+    $user = User::findorfail($id);
+    return view('users.index', compact('user'));
+  }
+  public function delete($id){
+    $user = User::findorfail($id);
+    return view('users.index', compact('user'));
+  }
   public function logout(){
     Auth::logout();
     return redirect('/');

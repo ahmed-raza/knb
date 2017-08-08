@@ -108,3 +108,7 @@ hr.margin {
 .user-edit-form img {
   width: 33%;
 }
+
+.admin-menu > .navbar {
+  margin-bottom: 0;
+}

@@ -22,6 +22,7 @@
           {!! str_limit($ad->description, 350) !!}
         </div>
       </div>
+      <hr class="margin">
     @endforeach
     {!! $ads->render() !!}
   </div>

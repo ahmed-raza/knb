@@ -5,7 +5,15 @@
 @section('content')
 
   <h1>{{ $user->name }}</h1>
-
+  @if(CustomHelper::ownerOrAdmin('user', $user))
+    <div class="btn-group pull-right">
+      <button class="btn btn-warning btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li>{!! HTML::linkRoute('user.edit', 'Edit', $user->id) !!}</li>
+      </ul>
+    </div>
+  @endif
   <p><strong>Email:</strong> {!! $user->email !!}</p>
   <p><strong>Phone:</strong> {!! $user->phone !!}</p>
 

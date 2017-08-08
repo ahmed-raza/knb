@@ -97,3 +97,11 @@ hr.margin {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   box-shadow: 1px 1px 1px;
 }
+
+.user-profile img {
+  width: 100%;
+}
+
+.user-edit-form img {
+  width: 33%;
+}

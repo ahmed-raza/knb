@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('title', 'Profile')
+@section('body-class', 'user-profile')
 
 @section('content')
 
@@ -14,8 +15,17 @@
       </ul>
     </div>
   @endif
-  <p><strong>Email:</strong> {!! $user->email !!}</p>
-  <p><strong>Phone:</strong> {!! $user->phone !!}</p>
+  <div class="row">
+    <div class="col-lg-3">
+      <img src="data:image/jpeg;base64,{{ base64_encode(Storage::get('users/'.$user->id.'/thumb_'.$user->pic)) }}" alt="">
+    </div>
+    <div class="col-lg-9">
+      <p><strong>Email:</strong> {!! $user->email !!}</p>
+      <p><strong>Phone:</strong> {!! $user->phone !!}</p>
+      <strong>Bio:</strong>
+      {!! $user->bio !!}
+    </div>
+  </div>
 
 @stop
 

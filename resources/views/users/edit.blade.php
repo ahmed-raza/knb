@@ -1,5 +1,8 @@
 @extends('app')
 
+@section('title', 'Edit User Profile')
+@section('body-class', 'user-edit-form')
+
 @section('content')
 
   <h1>Edit: <a href="{{ route('user.show', $user->id) }}">{{ $user->name }}</a></h1>
@@ -25,7 +28,7 @@
       </div>
       @if($user->pic)
         <div class="col-lg-6 user-pic">
-          {{-- img --}}
+          <img src="data:image/jpeg;base64,{{ base64_encode(Storage::get('users/'.$user->id.'/thumb_'.$user->pic)) }}" alt="">
         </div>
       @endif
     </div>

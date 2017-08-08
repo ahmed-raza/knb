@@ -19,6 +19,8 @@ Route::get('team', ['as'=>'team', 'uses'=>'PagesController@team']);
 Route::get('user/profile', ['as'=>'user.profile', 'uses'=>'UsersController@profile']);
 
 Route::group(['prefix'=>'user/{id}'], function(){
+  Route::get('edit', 'UsersController@edit')->name('user.edit');
+  Route::get('delete', 'UsersController@delete')->name('user.delete');
   Route::get('/', ['as'=>'user.show', 'uses'=>'UsersController@show']);
   Route::get('logout', ['as'=>'user.logout', 'uses'=>'UsersController@logout']);
 });

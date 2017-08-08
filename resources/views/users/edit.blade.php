@@ -4,7 +4,7 @@
 
   <h1>Edit: <a href="{{ route('user.show', $user->id) }}">{{ $user->name }}</a></h1>
 
-  {!! Form::open(['url'=>route('user.update', $user->id)]) !!}
+  {!! Form::open(['url'=>route('user.update', $user->id), 'enctype'=>'multipart/form-data', 'files'=>true]) !!}
   <div class="form-group">
     {!! Form::label('name') !!}
     {!! Form::text('name', $user->name, ['class'=>'form-control']) !!}

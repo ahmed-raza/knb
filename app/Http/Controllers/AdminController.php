@@ -17,11 +17,17 @@ class AdminController extends Controller
   public function __construct(){
     return $this->middleware('admin');
   }
-  public function dashboard(){
-    $ads = Ad::all();
-    $users = User::all();
-    $messages = Contact::all();
-    return view('admin.dashboard', compact('ads', 'users', 'messages'));
+  public function content(){
+    $ads = Ad::paginate(20);
+    return view('admin.content', compact('ads'));
+  }
+  public function users(){
+    $users = User::paginate(20);
+    return view('admin.users', compact('users'));
+  }
+  public function contactSubmissions(){
+    $submissions = Contact::paginate(20);
+    return view('admin.contact_submissions', compact('submissions'));
   }
   public function adsOperations(Request $request){
     $rules = ['id' => 'required'];

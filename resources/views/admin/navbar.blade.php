@@ -15,7 +15,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{{ route('admin.content') }}">Content</a></li>
+        <li class="{{ Request::is('admin/content') ? 'active' : '' }}"><a href="{{ route('admin.content') }}">Content</a></li>
         <li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">People <span class="caret"></span></a>
@@ -25,7 +25,7 @@
             </ul>
           </li>
         </li>
-        <li><a href="{{ route('admin.contact_submissions') }}">Contact Submissions</a></li>
+        <li class="{{ Request::is('admin/contact/submissions') ? 'active' : '' }}"><a href="{{ route('admin.contact_submissions') }}">Contact Submissions</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

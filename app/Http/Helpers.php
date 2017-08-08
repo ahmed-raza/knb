@@ -19,9 +19,18 @@ class CustomHelper {
         break;
     }
   }
-  public static function ownerOrAdmin($ad){
-    if ((Auth::check() && Auth::user()->id === $ad->user->id) || (Auth::check() && Auth::user()->rank === 'admin')) {
-      return true;
+  public static function ownerOrAdmin($entityType, $entity){
+    switch ($entityType) {
+      case 'ad':
+        if ((Auth::check() && Auth::user()->id === $entity->user->id) || (Auth::check() && Auth::user()->rank === 'admin')) {
+          return true;
+        }
+        break;
+      case 'user':
+        if ((Auth::check() && Auth::user()->id === $entity->id) || (Auth::check() && Auth::user()->rank === 'admin')) {
+          return true;
+        }
+        break;
     }
     return false;
   }

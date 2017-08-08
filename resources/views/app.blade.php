@@ -11,6 +11,9 @@
 </head>
 <body class="@yield('body-class')">
   <div class="off-canvas-container">
+    @if(Auth::check() && Auth::user()->rank === 'admin')
+      @include('admin.navbar')
+    @endif
     @include('partials.nav')
     <div class="main-content">
       <div class="container">

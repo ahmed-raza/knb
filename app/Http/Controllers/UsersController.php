@@ -41,6 +41,10 @@ class UsersController extends Controller
       ->save(storage_path('app/users/'.$id.'/'.$imageThumb));
       $user->pic = $imageName;
     }
+    if ($request->input('remove-pic')) {
+      Storage::deleteDirectory('users/'.$id);
+      $user->pic = '';
+    }
     $user->update($request->except('pic'));
     return redirect(route('user.profile'))->with('message', 'User updated.');
   }

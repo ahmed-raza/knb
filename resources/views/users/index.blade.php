@@ -16,10 +16,12 @@
     </div>
   @endif
   <div class="row">
-    <div class="col-lg-3">
-      <img src="data:image/jpeg;base64,{{ base64_encode(Storage::get('users/'.$user->id.'/thumb_'.$user->pic)) }}" alt="">
-    </div>
-    <div class="col-lg-9">
+    @if($user->pic)
+      <div class="col-lg-3">
+        <img src="data:image/jpeg;base64,{{ base64_encode(Storage::get('users/'.$user->id.'/thumb_'.$user->pic)) }}" alt="">
+      </div>
+    @endif
+    <div class="{{ ($user->pic) ? 'col-lg-9' : 'col-lg-12' }}">
       <p><strong>Email:</strong> {!! $user->email !!}</p>
       <p><strong>Phone:</strong> {!! $user->phone !!}</p>
       <strong>Bio:</strong>

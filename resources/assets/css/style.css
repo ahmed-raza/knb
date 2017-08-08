@@ -37,9 +37,12 @@ input.has-error:focus {
   margin-top: 15px;
 }
 
-.logo {
+.navbar .navbar-brand .logo {
   margin-right: 10px;
-  color: #50457B;
+  color: #7757f5;
+}
+.navbar .navbar-brand:hover .logo {
+  color: #a68fff;
 }
 
 .off-canvas-container{

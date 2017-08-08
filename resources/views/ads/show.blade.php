@@ -3,8 +3,8 @@
 @section('content')
   
   <div class="row">  
-    <h1 class="{{ (CustomHelper::ownerOrAdmin($ad)) ? 'col-lg-10' : 'col-lg-12' }}">{{ $ad->title }}</h1>
-    @if(CustomHelper::ownerOrAdmin($ad))
+    <h1 class="{{ (CustomHelper::ownerOrAdmin('ad', $ad)) ? 'col-lg-10' : 'col-lg-12' }}">{{ $ad->title }}</h1>
+    @if(CustomHelper::ownerOrAdmin('ad', $ad))
       <div class="dropdown pull-right col-lg-2 user-actions">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Actions
         <span class="caret"></span></button>

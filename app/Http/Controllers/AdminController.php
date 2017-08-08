@@ -38,23 +38,23 @@ class AdminController extends Controller
         case 'delete':
         Ad::destroy($request->input('id'));
         Image::where('ad_id', $request->input('id'))->delete();
-        return redirect('admin/dashboard')->with('message','Ads deleted');
+        return redirect(route('admin.content'))->with('message','Ads deleted');
         break;
         case 'publish':
         foreach ($request->get('id') as $id) {
           DB::table('ads')->where('id', $id)->update(['status' => 1]);
         }
-        return redirect('admin/dashboard')->with('message','Ads Published');
+        return redirect(route('admin.content'))->with('message','Ads Published');
         break;
         case 'unpublish':
         foreach ($request->get('id') as $id) {
           DB::table('ads')->where('id', $id)->update(['status' => 0]);
         }
-        return redirect('admin/dashboard')->with('message','Ads Unpublished');
+        return redirect(route('admin.content'))->with('message','Ads Unpublished');
         break;
       }
     } else {
-        return redirect('admin/dashboard')->with('error','No item selected.');
+        return redirect(route('admin.content'))->with('error','No item selected.');
     }
   }
 }

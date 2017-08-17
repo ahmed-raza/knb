@@ -29,9 +29,15 @@
             @unless($ad->images->isEmpty())
               <img src="data:image/jpeg;base64,{{ base64_encode(CustomHelper::getPath($ad->images[0], 'thumb')) }}" alt="Ad Image" class="img-thumbnail">
             @endunless
-            <h2><a href="{{ route('ads.show', $ad->id) }}">{{ $ad->title }}</a></h2>
-            <p><em>{{ $ad->created_at->diffForHumans() }}</em></p>
-            {!! str_limit($ad->description, 300) !!}
+            @if(!$ad->images->isEmpty())
+              <h2><a href="{{ route('ads.show', $ad->id) }}">{{ $ad->title }}</a></h2>
+              <p><em>{{ $ad->created_at->diffForHumans() }}</em></p>
+              {!! str_limit($ad->description, 300) !!}
+            @else
+              <h2><a href="{{ route('ads.show', $ad->id) }}">{{ $ad->title }}</a></h2>
+              <p><em>{{ $ad->created_at->diffForHumans() }}</em></p>
+              {!! str_limit($ad->description, 1000) !!}
+            @endif
           </div>
         @endforeach
       </div>
